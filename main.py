@@ -4,4 +4,4 @@ import action
 
 frame = None
 while True:
-    action.do(decision.make_next(frame))
+    action.do(decision.make_next(frame), frame)
