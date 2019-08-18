@@ -1,10 +1,11 @@
 
 import time
+import bunch
 
 def _every_msec(frame, every_msec):
     cur_time = time.time()
     elapsed = int((cur_time - frame.time) * 1000)
-    return elapsed % every_msec
+    return (elapsed % every_msec == 0)
 
 def _admin_decision(thing, frame):
     thing.module = "admin"
@@ -21,7 +22,7 @@ def _admin_decision(thing, frame):
         return False
 
 def make_next(frame):
-    thing = object()
+    thing = bunch.Bunch()
     thing.module = None
     thing.method = None
     thing.params = []

@@ -1,11 +1,13 @@
 
-import sys
+import importlib
 
-from . import admin
+submodules = {}
 
 def do(thing, frame):
     if thing.module is None or thing.method is None:
         pass
     else:
-        method = getattr(sys.modules[thing.module], thing.method)
+        if not thing.module in submodules:
+            submodules[thing.module] = importlib.import_module("." + thing.module, "action")
+        method = getattr(submodules[thing.module], thing.method)
         method(thing.params, frame)

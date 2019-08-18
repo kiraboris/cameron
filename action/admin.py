@@ -1,8 +1,8 @@
 
-import threading
+import multiprocessing
 import sys
 
-class BackInput(threading.Thread):
+class InputProcess(multiprocessing.Process):
     def __init__(self):
         super().__init__()
         self._stack = []
@@ -12,17 +12,25 @@ class BackInput(threading.Thread):
             self._stack.append(input())
 
     def pop(self):
-        return self._stack.pop()
+        if self._stack:
+            return self._stack.pop()
+        else:
+            return None
 
-back_input = BackInput()
-back_input.start()
+input_process = None
 
 def read(_, frame):
-    frame.admin_input = back_input.pop()
+    global input_process
+    if not input_process:
+        input_process = InputProcess()
+        input_process.start()
+    frame.admin_input = input_process.pop()
+    print(frame.admin_input)
 
 def write(params, frame):
     if params:
         print(" ".join(params))
 0
 def suspend(_, frame):
+    input_process.terminate()
     sys.exit(0)
