@@ -1,0 +1,14 @@
+
+
+Modules:
+
+action modules
+    memory
+    environment
+    internet
+    misc. processing
+
+decision making
+
+primitives
+    decision
