@@ -21,7 +21,8 @@ def read(_, frame):
     frame.admin_input = back_input.pop()
 
 def write(params, frame):
-    print(params.text)
+    if params:
+        print(" ".join(params))
 0
 def suspend(_, frame):
     sys.exit(0)
