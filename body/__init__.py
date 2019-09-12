@@ -1,4 +1,4 @@
-"""A PC body as a QT application"""
+"""A PC body as a QT application."""
 
 from PySide2 import QtWidgets
 
