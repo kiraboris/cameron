@@ -1,4 +1,4 @@
-"""This is the starting point. It connects the core with an arbitrary body."""
+"""This is the starting point. It connects the core with a sensitive body."""
 
 if __name__ == "__main__":
     import core
