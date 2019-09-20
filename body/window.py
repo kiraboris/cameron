@@ -24,7 +24,7 @@ class ChatWindow(QtWidgets.QMainWindow):
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.txt)
         layout.addWidget(self.line)
-        self.line.sigMessage.connect(self.on_user_message)
+        self.line.sigMessage.connect(self._on_user_message)
         cw.setLayout(layout)
         self.setCentralWidget(cw)
 
@@ -42,9 +42,9 @@ class ChatWindow(QtWidgets.QMainWindow):
     def set_user_name(self, name: str):
         self._user_name = name
 
-    def on_user_message(self, msg: str):
+    def _on_user_message(self, msg: str):
         self.txt.append(self._user_name + ": " + msg + "\n")
         self.sigUserMessage.emit(msg)
 
-    def on_partner_message(self, msg: str):
+    def partner_message(self, msg: str):
         self.txt.append(self._partner_name + ": " + msg + "\n")
