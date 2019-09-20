@@ -1,7 +1,8 @@
 """The best mind in the world. =P"""
 
 class C:
-    pass
+    def name(self):
+        return "Cameron"
 
 def create():
     return C()
